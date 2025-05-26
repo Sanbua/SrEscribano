@@ -5,7 +5,7 @@
     "dev": "npx tsx watch --env-file .env src/index.ts",
     "build": "tsc",
     "start_prod": "NODE_ENV=production npx tsx --env-file .env --env-file .env.production src/index.ts",
-    "start": "npx tsx src/index.ts",
+    "start": "npm run build && node dist/index.js",
     "lint": "npx eslint",
     "lint:fix": "npm run lint --fix"
   },
