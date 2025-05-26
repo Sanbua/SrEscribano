@@ -1,5 +1,5 @@
 import { bot } from './bot'
-import { cellDay, getMonth, today } from './calcDate'
+import { getDay, getMonthName, getToday } from './calcDate'
 import { sheets, spreadsheetId } from './conGoogle'
 import { gameInfo } from './util/gameInfo'
 import { months } from './util/months'
@@ -8,7 +8,7 @@ import { users } from './util/users'
 
 export async function getData(gameActual: any, userActual: any, timeGame: string) {
   const positionUser = userActual.position[gameActual?.name]
-  const range = `${months[getMonth]}!${positionUser}${cellDay}`
+  const range = `${months[getMonthName()]}!${positionUser}${getDay()}`
 
   resetTimesDay()
 
@@ -27,8 +27,8 @@ export async function getData(gameActual: any, userActual: any, timeGame: string
 }
 
 export function resetTimesDay(): void {
-  if (timesDay.today !== today) {
-    timesDay.today = today
+  if (timesDay.today !== getToday()) {
+    timesDay.today = getToday()
     // Reiniciar los tiempos del día de todos los usuarios
     users.forEach((user) => {
       timesDay[user.username] = { Queens: '', Tango: '', Zip: '' }

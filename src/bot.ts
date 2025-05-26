@@ -1,5 +1,5 @@
 import { Bot } from 'gramio'
-import { hour, today } from './calcDate.ts'
+import { getHour, getToday } from './calcDate.ts'
 import { config } from './config.ts'
 import { getData } from './obtainData.ts'
 import { gameInfo } from './util/gameInfo.ts'
@@ -7,13 +7,13 @@ import { regexTime } from './util/regex.ts'
 import { users } from './util/users.ts'
 
 export const bot = new Bot(config.BOT_TOKEN).onStart(({ info }) =>
-  console.log(`✨ Bot ${info.username} was started! ${today}`),
+  console.log(`✨ Bot ${info.username} was started! ${getToday()}`),
 )
 
 bot.on('message', async (context) => {
   // log
   console.log(`
-    Mensaje de ${context.from.username} [${context.from.id}]: ${today} ${hour}  
+    Mensaje de ${context.from.username} [${context.from.id}]: ${getHour()}  
     ${context.text}
     `)
 
@@ -25,7 +25,7 @@ bot.on('message', async (context) => {
     if (gameActual !== undefined) {
       const timeGame = context.text?.match(regexTime)?.[0] || '-:--'
       getData(gameActual, userActual, timeGame)
-      await context.send(`Vale ${context.from.firstName}, el ${gameActual?.name} del día ${today} esta apuntado con un tiempo de ${timeGame}`)
+      await context.send(`Vale ${context.from.firstName}, el ${gameActual?.name} del día ${getToday()} esta apuntado con un tiempo de ${timeGame}`)
     } else if (context.text?.toLowerCase().includes('moa')) {
       await context.send('MOA 😊')
     } else {
