@@ -1,9 +1,10 @@
+import type { Game } from './types/timesDay.type'
 import { bot } from './bot'
 import { getDay, getMonthName, getToday } from './calcDate'
 import { sheets, spreadsheetId } from './conGoogle'
 import { gameInfo } from './util/gameInfo'
 import { months } from './util/months'
-import timesDay from './util/timesDay.json'
+import { timesDay } from './util/timesDay'
 import { users } from './util/users'
 
 export async function getData(gameActual: any, userActual: any, timeGame: string) {
@@ -21,7 +22,8 @@ export async function getData(gameActual: any, userActual: any, timeGame: string
     },
   })
 
-  timesDay[userActual?.username][gameActual?.name] = timeGame
+  const game = timesDay.users[userActual.username] as Game
+  game[gameActual?.name as keyof Game] = timeGame
 
   checkCompleted()
 }
@@ -31,13 +33,13 @@ export function resetTimesDay(): void {
     timesDay.today = getToday()
     // Reiniciar los tiempos del día de todos los usuarios
     users.forEach((user) => {
-      timesDay[user.username] = { Queens: '', Tango: '', Zip: '' }
+      timesDay.users[user.username] = { Queens: '', Tango: '', Zip: '' }
     })
   }
 }
 
 export function checkCompleted(): void {
-  const completed = Object.values(timesDay).every(user =>
+  const completed = Object.values(timesDay.users).every(user =>
     Object.values(user).every(value => value.trim() !== ''),
   )
 
@@ -52,7 +54,9 @@ export function msgComplete(): void {
   gameInfo.forEach((game) => {
     message += `En el ${game.nameDecorated},\n`
     users.forEach((user) => {
-      message += ` ${user.firstName}: ${timesDay[user.username][game.name]}\n`
+      const value = timesDay.users[user.username]?.[game.name]
+      message += ` ${user.firstName}: ${value ?? '(sin datos)'}\n`
+      // message += ` ${user.firstName}: ${timesDay.users[user.username][game.name]}\n`
     })
     message += `\n`
   })

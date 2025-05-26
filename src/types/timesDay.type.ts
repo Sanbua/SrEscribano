@@ -1,7 +1,6 @@
 export interface RootObject {
   today: string
-  Sandrabua: Game
-  Mallen29: Game
+  users: Record<string, Game>
 }
 
 export interface Game {
