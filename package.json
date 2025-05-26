@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "npx tsx watch --env-file .env src/index.ts",
     "build": "tsc",
-    "start": "NODE_ENV=production npx tsx --env-file .env --env-file .env.production src/index.ts",
+    "start_prod": "NODE_ENV=production npx tsx --env-file .env --env-file .env.production src/index.ts",
+    "start": "npx tsx src/index.ts",
     "lint": "npx eslint",
     "lint:fix": "npm run lint --fix"
   },
