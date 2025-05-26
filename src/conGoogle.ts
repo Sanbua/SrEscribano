@@ -1,6 +1,6 @@
 import { google } from 'googleapis'
 
-import { sheet } from './config.ts'
+import { sheet } from './config'
 
 const credentials = JSON.parse(process.env.CREDENTIALS_JSON!)
 export const auth = new google.auth.JWT({

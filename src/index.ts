@@ -1,4 +1,4 @@
-import { bot } from './bot.ts'
+import { bot } from './bot'
 
 const signals = ['SIGINT', 'SIGTERM']
 
