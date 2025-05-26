@@ -1,4 +1,5 @@
 import { bot } from './bot.js'
+import './heartbeat.js'
 
 const signals = ['SIGINT', 'SIGTERM']
 
