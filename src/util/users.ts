@@ -1,4 +1,4 @@
-import { mallen29_id, sandrabua_id } from '../config'
+import { mallen29_id, sandrabua_id } from '../config.js'
 
 export const users = [
   {

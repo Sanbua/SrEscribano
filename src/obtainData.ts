@@ -1,11 +1,11 @@
-import type { Game } from './types/timesDay.type'
-import { bot } from './bot'
-import { getDay, getMonthName, getToday } from './calcDate'
-import { sheets, spreadsheetId } from './conGoogle'
-import { gameInfo } from './util/gameInfo'
-import { months } from './util/months'
-import { timesDay } from './util/timesDay'
-import { users } from './util/users'
+import type { Game } from './types/timesDay.type.js'
+import { bot } from './bot.js'
+import { getDay, getMonthName, getToday } from './calcDate.js'
+import { sheets, spreadsheetId } from './conGoogle.js'
+import { gameInfo } from './util/gameInfo.js'
+import { months } from './util/months.js'
+import { timesDay } from './util/timesDay.js'
+import { users } from './util/users.js'
 
 export async function getData(gameActual: any, userActual: any, timeGame: string) {
   const positionUser = userActual.position[gameActual?.name]

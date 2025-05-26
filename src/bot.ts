@@ -1,10 +1,10 @@
 import { Bot } from 'gramio'
-import { getHour, getToday } from './calcDate'
-import { config } from './config'
-import { getData } from './obtainData'
-import { gameInfo } from './util/gameInfo'
-import { regexTime } from './util/regex'
-import { users } from './util/users'
+import { getHour, getToday } from './calcDate.js'
+import { config } from './config.js'
+import { getData } from './obtainData.js'
+import { gameInfo } from './util/gameInfo.js'
+import { regexTime } from './util/regex.js'
+import { users } from './util/users.js'
 
 export const bot = new Bot(config.BOT_TOKEN).onStart(({ info }) =>
   console.log(`✨ Bot ${info.username} was started! ${getToday()}`),

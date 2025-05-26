@@ -1,4 +1,4 @@
-import type { RootObject } from '../types/timesDay.type'
+import type { RootObject } from '../types/timesDay.type.js'
 
 export const timesDay: RootObject = {
   today: '',
